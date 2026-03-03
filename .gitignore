@@ -1,0 +1,38 @@
+# ===== Keil MDK-ARM Build Outputs =====
+MDK-ARM/Smart_Water_Bottle/
+MDK-ARM/DebugConfig/
+MDK-ARM/RTE/
+MDK-ARM/*.scvd
+MDK-ARM/*.uvguix.*
+MDK-ARM/*.lst
+
+# ===== Common Build Artifacts =====
+*.o
+*.d
+*.crf
+*.axf
+*.hex
+*.bin
+*.elf
+*.map
+*.htm
+*.build_log.htm
+*.lnp
+*.sct
+*.dep
+*.lst
+*.iex
+
+# ===== IDE / Editor =====
+*.bak
+*.~*
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+desktop.ini
