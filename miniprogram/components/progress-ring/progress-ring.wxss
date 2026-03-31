@@ -1,0 +1,47 @@
+.progress-ring-container {
+  position: relative;
+  width: 400rpx;
+  height: 400rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.progress-canvas {
+  position: absolute;
+  width: 400rpx;
+  height: 400rpx;
+}
+
+.progress-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+}
+
+.progress-value {
+  font-size: 64rpx;
+  font-weight: 700;
+  color: #1890FF;
+  line-height: 1;
+}
+
+.progress-unit {
+  font-size: 24rpx;
+  color: #8C8C8C;
+  margin-top: 4rpx;
+}
+
+.progress-divider {
+  width: 80rpx;
+  height: 2rpx;
+  background: #E8E8E8;
+  margin: 16rpx 0;
+}
+
+.progress-goal {
+  font-size: 24rpx;
+  color: #8C8C8C;
+}

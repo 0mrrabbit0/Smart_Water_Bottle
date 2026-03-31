@@ -1,0 +1,10 @@
+<view class="quality-gauge">
+  <view class="gauge-header">
+    <text class="gauge-label">{{label}}</text>
+    <text class="gauge-value">{{value}} <text class="gauge-unit">{{unit}}</text></text>
+  </view>
+  <view class="gauge-bar-bg">
+    <view class="gauge-bar-fill" style="width: {{percent}}%; background: {{color}};"></view>
+  </view>
+  <view class="gauge-grade" style="color: {{color}};">{{gradeLabel}}</view>
+</view>

@@ -1,0 +1,17 @@
+<view class="timeline">
+  <view wx:if="{{records.length === 0}}" class="timeline-empty">
+    <text>今日暂无饮水记录</text>
+  </view>
+  <view wx:for="{{records}}" wx:key="_id" class="timeline-item">
+    <view class="timeline-dot"></view>
+    <view class="timeline-line" wx:if="{{index < records.length - 1}}"></view>
+    <view class="timeline-content">
+      <view class="timeline-header">
+        <text class="timeline-time">{{item.timeStr}}</text>
+        <text class="timeline-source {{item.source}}">{{item.source === 'auto' ? '自动' : '手动'}}</text>
+      </view>
+      <text class="timeline-amount">{{item.amount}} ml</text>
+      <text wx:if="{{item.temperature}}" class="timeline-detail">水温 {{item.temperature}}°C</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,214 @@
+.page {
+  padding-top: 16rpx;
+  padding-bottom: 40rpx;
+}
+
+/* 进度环区域 */
+.progress-section {
+  padding: 40rpx 24rpx 32rpx;
+}
+
+.progress-tip {
+  text-align: center;
+  margin-top: 16rpx;
+}
+
+.tip-text {
+  font-size: 26rpx;
+  color: #8C8C8C;
+}
+
+.tip-text.tip-success {
+  color: #52C41A;
+  font-weight: 500;
+}
+
+/* 数据卡片网格 */
+.data-grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 16rpx;
+}
+
+.grid-item {
+  width: 50%;
+  padding: 8rpx;
+  box-sizing: border-box;
+}
+
+/* 快捷操作 */
+.action-bar {
+  display: flex;
+  padding: 24rpx;
+  gap: 20rpx;
+}
+
+.action-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24rpx;
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  gap: 12rpx;
+}
+
+.action-icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.action-drink {
+  background: #1890FF;
+  color: #FFFFFF;
+}
+
+.action-drink:active {
+  background: #096DD9;
+}
+
+.action-unlock {
+  background: #FFFFFF;
+  color: #1890FF;
+  border: 2rpx solid #1890FF;
+}
+
+.action-unlock:active {
+  background: #E6F7FF;
+}
+
+/* 弹窗 */
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-content {
+  width: 600rpx;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 40rpx;
+}
+
+.modal-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #262626;
+  text-align: center;
+  display: block;
+  margin-bottom: 32rpx;
+}
+
+.modal-desc {
+  font-size: 26rpx;
+  color: #8C8C8C;
+  text-align: center;
+  display: block;
+  margin-bottom: 24rpx;
+}
+
+/* 饮水量选择 */
+.drink-options {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 24rpx;
+}
+
+.drink-option {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx 0;
+  border: 2rpx solid #D9D9D9;
+  border-radius: 12rpx;
+  transition: all 0.2s;
+}
+
+.drink-option.selected {
+  border-color: #1890FF;
+  background: #E6F7FF;
+}
+
+.option-amount {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #262626;
+}
+
+.option-unit {
+  font-size: 22rpx;
+  color: #8C8C8C;
+}
+
+.custom-amount {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32rpx;
+  gap: 16rpx;
+}
+
+.custom-label {
+  font-size: 26rpx;
+  color: #595959;
+  flex-shrink: 0;
+}
+
+.custom-input {
+  flex: 1;
+  height: 72rpx;
+  border: 2rpx solid #D9D9D9;
+  border-radius: 12rpx;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+}
+
+/* 开锁密码输入 */
+.unlock-input {
+  height: 88rpx;
+  border: 2rpx solid #D9D9D9;
+  border-radius: 12rpx;
+  text-align: center;
+  font-size: 48rpx;
+  letter-spacing: 32rpx;
+  margin-bottom: 32rpx;
+}
+
+/* 弹窗按钮 */
+.modal-actions {
+  display: flex;
+  gap: 20rpx;
+}
+
+.modal-btn {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.modal-btn.cancel {
+  background: #F5F5F5;
+  color: #595959;
+}
+
+.modal-btn.confirm {
+  background: #1890FF;
+  color: #FFFFFF;
+}
+
+.modal-btn.confirm:active {
+  background: #096DD9;
+}

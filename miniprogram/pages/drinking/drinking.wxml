@@ -1,0 +1,129 @@
+<view class="page">
+  <!-- 今日概览 -->
+  <view class="card summary-card">
+    <view class="summary-header">
+      <text class="summary-date">{{todayStr}}</text>
+      <view class="goal-setting" bindtap="onGoalTap">
+        <text class="goal-text">目标 {{dailyGoal}}ml</text>
+        <text class="goal-edit">修改</text>
+      </view>
+    </view>
+
+    <view class="summary-body">
+      <view class="summary-main">
+        <text class="summary-amount">{{dailyTotal}}</text>
+        <text class="summary-unit">ml</text>
+      </view>
+      <view class="summary-bar-bg">
+        <view class="summary-bar-fill" style="width: {{progressPercent}}%;"></view>
+      </view>
+      <view class="summary-stats">
+        <view class="stat-item">
+          <text class="stat-value">{{drinkCount}}</text>
+          <text class="stat-label">饮水次数</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{streakDays}}</text>
+          <text class="stat-label">连续达标</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{avgTemp}}</text>
+          <text class="stat-label">平均水温</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快速记录 -->
+  <view class="card">
+    <text class="section-title">快速记录</text>
+    <view class="quick-btns">
+      <view
+        wx:for="{{quickAmounts}}"
+        wx:key="*this"
+        class="quick-btn"
+        bindtap="quickDrink"
+        data-amount="{{item}}"
+      >
+        <text class="quick-amount">{{item}}</text>
+        <text class="quick-unit">ml</text>
+      </view>
+      <view class="quick-btn custom" bindtap="customDrink">
+        <text class="quick-amount">+</text>
+        <text class="quick-unit">自定义</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 饮水提醒设置 -->
+  <view class="card">
+    <view class="flex-between">
+      <text class="section-title" style="margin-bottom:0;">饮水提醒</text>
+      <switch checked="{{reminderEnabled}}" bindchange="toggleReminder" color="#1890FF" />
+    </view>
+    <view wx:if="{{reminderEnabled}}" class="reminder-setting">
+      <view class="flex-between" style="margin-top: 20rpx;">
+        <text class="reminder-label">提醒间隔</text>
+        <picker mode="selector" range="{{reminderOptions}}" range-key="label" value="{{reminderIdx}}" bindchange="onReminderChange">
+          <text class="reminder-value">{{reminderOptions[reminderIdx].label}}</text>
+        </picker>
+      </view>
+    </view>
+  </view>
+
+  <!-- 今日时间线 -->
+  <view class="card">
+    <view class="flex-between" style="margin-bottom: 20rpx;">
+      <text class="section-title" style="margin-bottom:0;">今日记录</text>
+      <text class="view-stats" bindtap="goStats">查看统计</text>
+    </view>
+    <drink-timeline records="{{todayRecords}}" />
+  </view>
+
+  <!-- 周统计预览 -->
+  <view class="card">
+    <text class="section-title">本周概览</text>
+    <view class="week-chart">
+      <view wx:for="{{weekData}}" wx:key="date" class="week-bar-item">
+        <view class="week-bar-bg">
+          <view class="week-bar-fill {{item.achieved ? 'achieved' : ''}}" style="height: {{item.percent}}%;"></view>
+        </view>
+        <text class="week-label">{{item.dayLabel}}</text>
+      </view>
+    </view>
+    <view class="week-legend">
+      <view class="legend-item">
+        <view class="legend-dot achieved"></view>
+        <text>已达标</text>
+      </view>
+      <view class="legend-item">
+        <view class="legend-dot"></view>
+        <text>未达标</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 目标设置弹窗 -->
+  <view class="modal-mask" wx:if="{{showGoalModal}}" bindtap="closeGoalModal">
+    <view class="modal-content" catchtap>
+      <text class="modal-title">设置每日目标</text>
+      <view class="goal-slider-area">
+        <text class="goal-display">{{tempGoal}} ml</text>
+        <slider
+          min="500" max="5000" step="50"
+          value="{{tempGoal}}"
+          activeColor="#1890FF"
+          bindchange="onGoalSlide"
+        />
+        <view class="goal-range">
+          <text>500ml</text>
+          <text>5000ml</text>
+        </view>
+      </view>
+      <view class="modal-actions">
+        <view class="modal-btn cancel" bindtap="closeGoalModal">取消</view>
+        <view class="modal-btn confirm" bindtap="confirmGoal">确认</view>
+      </view>
+    </view>
+  </view>
+</view>

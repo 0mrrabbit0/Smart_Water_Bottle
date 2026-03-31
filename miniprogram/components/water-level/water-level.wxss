@@ -1,0 +1,63 @@
+.water-level-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.water-bottle {
+  width: 60rpx;
+  height: 100rpx;
+  border: 4rpx solid #D9D9D9;
+  border-radius: 0 0 12rpx 12rpx;
+  position: relative;
+  overflow: hidden;
+  background: #FAFAFA;
+}
+
+.water-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, #1890FF, #69C0FF);
+  transition: height 0.6s ease;
+  border-radius: 0 0 8rpx 8rpx;
+}
+
+.water-wave {
+  position: absolute;
+  top: -4rpx;
+  left: -10%;
+  right: -10%;
+  height: 10rpx;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  animation: wave 2s infinite ease-in-out;
+}
+
+@keyframes wave {
+  0%, 100% { transform: translateX(-5%); }
+  50% { transform: translateX(5%); }
+}
+
+.level-marks {
+  position: absolute;
+  right: 4rpx;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.mark {
+  width: 8rpx;
+  height: 2rpx;
+  background: #D9D9D9;
+}
+
+.level-text {
+  font-size: 20rpx;
+  color: #8C8C8C;
+  margin-top: 8rpx;
+}

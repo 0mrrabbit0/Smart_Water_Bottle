@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "quality-gauge": "/components/quality-gauge/quality-gauge"
+  },
+  "navigationBarTitleText": "水质分析"
+}

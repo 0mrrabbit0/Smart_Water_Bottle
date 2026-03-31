@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "progress-ring": "/components/progress-ring/progress-ring",
+    "data-card": "/components/data-card/data-card",
+    "ble-status": "/components/ble-status/ble-status"
+  },
+  "navigationBarTitleText": "智能水杯"
+}

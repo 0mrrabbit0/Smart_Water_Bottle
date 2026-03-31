@@ -1,0 +1,6 @@
+<view class="ble-status {{connected ? 'connected' : 'disconnected'}}" bindtap="onTap">
+  <view class="ble-dot"></view>
+  <text class="ble-text">{{connected ? '已连接' : '未连接'}}</text>
+  <text wx:if="{{deviceName}}" class="ble-name">{{deviceName}}</text>
+  <text wx:if="{{!connected}}" class="ble-action">点击连接</text>
+</view>
