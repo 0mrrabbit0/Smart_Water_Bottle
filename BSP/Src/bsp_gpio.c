@@ -27,19 +27,21 @@ void BSP_GPIO_Init(void)
     gpio.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(VBAT_ADC_PORT, &gpio);
 
-    /* --- M04 Non-contact Water Level Sensors (PA1, PB0, PB1) Input Pull-Up --- */
-    /* M04 has open-drain output, requires pull-up resistor */
+    /* --- IR Distance Sensor GP2Y0A21YK0F (PA1) Analog --- */
+    gpio.Pin  = IR_SENSOR_PIN;
+    gpio.Mode = GPIO_MODE_ANALOG;
+    gpio.Pull = GPIO_NOPULL;
+    HAL_GPIO_Init(IR_SENSOR_PORT, &gpio);
+
+    /* --- M04 Non-contact Water Level Sensors (PB0, PB1) Input Pull-Up --- */
     gpio.Mode = GPIO_MODE_INPUT;
     gpio.Pull = GPIO_PULLUP;
 
-    gpio.Pin = WATER_LEVEL_1_PIN;  /* Lowest sensor */
-    HAL_GPIO_Init(WATER_LEVEL_1_PORT, &gpio);
+    gpio.Pin = WATER_LEVEL_LOW_PIN;
+    HAL_GPIO_Init(WATER_LEVEL_LOW_PORT, &gpio);
 
-    gpio.Pin = WATER_LEVEL_2_PIN;  /* Middle sensor */
-    HAL_GPIO_Init(WATER_LEVEL_2_PORT, &gpio);
-
-    gpio.Pin = WATER_LEVEL_3_PIN;  /* Highest sensor */
-    HAL_GPIO_Init(WATER_LEVEL_3_PORT, &gpio);
+    gpio.Pin = WATER_LEVEL_HIGH_PIN;
+    HAL_GPIO_Init(WATER_LEVEL_HIGH_PORT, &gpio);
 
     /* --- Keys (PA4, PA5) Input Pull-Up --- */
     gpio.Pin = KEY1_PIN;
@@ -47,12 +49,6 @@ void BSP_GPIO_Init(void)
 
     gpio.Pin = KEY2_PIN;
     HAL_GPIO_Init(KEY2_PORT, &gpio);
-
-    /* --- IR Distance Sensor GP2Y0A21YK0F (PA7) Analog --- */
-    gpio.Pin  = IR_SENSOR_PIN;
-    gpio.Mode = GPIO_MODE_ANALOG;
-    gpio.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(IR_SENSOR_PORT, &gpio);
 
     /* --- TP4056 Status (PB10, PB11) Input Pull-Up --- */
     gpio.Pin = TP4056_CHRG_PIN;

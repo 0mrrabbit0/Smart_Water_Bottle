@@ -42,14 +42,12 @@
 /* TDS USART pins defined below with TP4056 section */
 
 /* ---- M04 Non-contact Capacitive Water Level Sensors (active LOW, open-drain) ---- */
-#define WATER_LEVEL_1_PORT      GPIOA
-#define WATER_LEVEL_1_PIN       GPIO_PIN_1  /* Lowest sensor */
+/* 2-level detection: Low (PB0) and High (PB1). PA1 reassigned to IR sensor. */
+#define WATER_LEVEL_LOW_PORT    GPIOB
+#define WATER_LEVEL_LOW_PIN     GPIO_PIN_0  /* Lower sensor */
 
-#define WATER_LEVEL_2_PORT      GPIOB
-#define WATER_LEVEL_2_PIN       GPIO_PIN_0  /* Middle sensor */
-
-#define WATER_LEVEL_3_PORT      GPIOB
-#define WATER_LEVEL_3_PIN       GPIO_PIN_1  /* Highest sensor */
+#define WATER_LEVEL_HIGH_PORT   GPIOB
+#define WATER_LEVEL_HIGH_PIN    GPIO_PIN_1  /* Higher sensor */
 
 /* ---- Keys (active LOW) ---- */
 #define KEY1_PORT               GPIOA
@@ -58,10 +56,10 @@
 #define KEY2_PORT               GPIOA
 #define KEY2_PIN                GPIO_PIN_5
 
-/* ---- IR Distance Sensor GP2Y0A21YK0F (PA7, ADC1 Channel 7, analog output) ---- */
+/* ---- IR Distance Sensor GP2Y0A21YK0F (PA1, ADC1 Channel 1, analog output) ---- */
 #define IR_SENSOR_PORT          GPIOA
-#define IR_SENSOR_PIN           GPIO_PIN_7
-#define IR_ADC_CHANNEL          ADC_CHANNEL_7
+#define IR_SENSOR_PIN           GPIO_PIN_1
+#define IR_ADC_CHANNEL          ADC_CHANNEL_1
 #define IR_CLOSE_THRESHOLD      1000    /* ADC raw threshold: above = lid closed (<~40cm) */
 
 /* ---- Servo Motor (PA6, TIM3_CH1) ---- */

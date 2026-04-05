@@ -11,7 +11,7 @@
 #include <string.h>
 
 static const char *s_water_level_str[] = {
-    "Empty", "Low", "Medium", "Full"
+    "Empty", "Low", "Full"
 };
 
 /**
@@ -90,7 +90,7 @@ void App_Display_Normal(void)
 
     /* Line 2: Water Level */
     uint8_t lvl = data.water_level;
-    if (lvl > 3) lvl = 3;
+    if (lvl > 2) lvl = 2;
     snprintf(buf, sizeof(buf), "Water: %s", s_water_level_str[lvl]);
     BSP_OLED_ShowString(0, 32, buf, 12);
 
