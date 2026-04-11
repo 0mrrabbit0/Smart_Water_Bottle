@@ -1,9 +1,0 @@
-<view class="progress-ring-container">
-  <canvas type="2d" id="progressCanvas" class="progress-canvas"></canvas>
-  <view class="progress-center">
-    <text class="progress-value">{{current}}</text>
-    <text class="progress-unit">ml</text>
-    <view class="progress-divider"></view>
-    <text class="progress-goal">目标 {{goal}}ml</text>
-  </view>
-</view>

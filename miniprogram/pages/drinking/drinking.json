@@ -1,7 +1,0 @@
-{
-  "usingComponents": {
-    "drink-timeline": "/components/drink-timeline/drink-timeline"
-  },
-  "navigationBarTitleText": "饮水记录",
-  "enablePullDownRefresh": true
-}

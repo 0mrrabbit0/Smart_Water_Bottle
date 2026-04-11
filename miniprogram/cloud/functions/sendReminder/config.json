@@ -1,9 +1,0 @@
-{
-  "triggers": [
-    {
-      "name": "drinkReminder",
-      "type": "timer",
-      "config": "0 */30 * * * * *"
-    }
-  ]
-}

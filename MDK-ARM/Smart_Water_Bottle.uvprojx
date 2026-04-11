@@ -11,7 +11,7 @@
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pArmCC>5060960::V5.06 update 7 (build 960)::.\version5.06</pArmCC>
-      <pCCUsed>5060960::V5.06 update 7 (build 960)::.\ARMCC</pCCUsed>
+      <pCCUsed>5060960::V5.06 update 7 (build 960)::.\version5.06</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -619,11 +619,6 @@
               <FileName>bsp_water_level.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\BSP\Src\bsp_water_level.c</FilePath>
-            </File>
-            <File>
-              <FileName>bsp_debug_uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\BSP\Src\bsp_debug_uart.c</FilePath>
             </File>
           </Files>
         </Group>

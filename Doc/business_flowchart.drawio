@@ -1,0 +1,174 @@
+<mxfile host="65bd71144e">
+    <diagram id="smart-water-bottle-thesis" name="智能水杯系统业务流程图">
+        <mxGraphModel dx="1148" dy="916" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="1400" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="start" value="开机上电" style="ellipse;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;fontFamily=SimSun;strokeWidth=1.5;" parent="1" vertex="1">
+                    <mxGeometry x="370" y="30" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="init" value="系统自检初始化&#xa;（传感器/显示屏/蓝牙）" style="rounded=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;fontFamily=SimSun;strokeWidth=1.5;" parent="1" vertex="1">
+                    <mxGeometry x="340" y="120" width="180" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_start" style="strokeWidth=1.5;strokeColor=#000000;" parent="1" source="start" target="init" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="normal" value="进入正常工作模式" style="rounded=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;fontFamily=SimSun;strokeWidth=1.5;" parent="1" vertex="1">
+                    <mxGeometry x="350" y="220" width="160" height="45" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_init" style="strokeWidth=1.5;strokeColor=#000000;" parent="1" source="init" target="normal" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_temp" value="水温检测&#xa;（DS18B20）" style="rounded=0;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#000000;fontSize=11;fontFamily=SimSun;strokeWidth=1;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="320" width="130" height="45" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_tds" value="水质分析&#xa;（TDS传感器）" style="rounded=0;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#000000;fontSize=11;fontFamily=SimSun;strokeWidth=1;" parent="1" vertex="1">
+                    <mxGeometry x="250" y="320" width="130" height="45" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_wl" value="水位监测&#xa;（电容式传感器）" style="rounded=0;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#000000;fontSize=11;fontFamily=SimSun;strokeWidth=1;" parent="1" vertex="1">
+                    <mxGeometry x="420" y="320" width="130" height="45" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_bat" value="电池电量检测&#xa;（ADC采样）" style="rounded=0;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#000000;fontSize=11;fontFamily=SimSun;strokeWidth=1;" parent="1" vertex="1">
+                    <mxGeometry x="590" y="320" width="130" height="45" as="geometry"/>
+                </mxCell>
+                <mxCell id="en1" style="strokeWidth=1;strokeColor=#000000;" parent="1" source="normal" target="f_temp" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="en2" style="strokeWidth=1;strokeColor=#000000;" parent="1" source="normal" target="f_tds" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="en3" style="strokeWidth=1;strokeColor=#000000;" parent="1" source="normal" target="f_wl" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="en4" style="strokeWidth=1;strokeColor=#000000;" parent="1" source="normal" target="f_bat" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="oled" value="OLED屏幕显示&#xa;（温度/水质/水位/时间/电量）" style="rounded=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;fontFamily=SimSun;strokeWidth=1.5;" parent="1" vertex="1">
+                    <mxGeometry x="295" y="420" width="240" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="eo1" style="strokeWidth=1;strokeColor=#000000;dashed=1;" parent="1" source="f_temp" target="oled" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="eo2" style="strokeWidth=1;strokeColor=#000000;dashed=1;" parent="1" source="f_tds" target="oled" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="eo3" style="strokeWidth=1;strokeColor=#000000;dashed=1;" parent="1" source="f_wl" target="oled" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="eo4" style="strokeWidth=1;strokeColor=#000000;dashed=1;" parent="1" source="f_bat" target="oled" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="bt" value="蓝牙数据同步&#xa;（每2秒发送至手机端）" style="rounded=0;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#000000;fontSize=11;fontFamily=SimSun;strokeWidth=1;" parent="1" vertex="1">
+                    <mxGeometry x="620" y="425" width="170" height="45" as="geometry"/>
+                </mxCell>
+                <mxCell id="ebt" style="strokeWidth=1;strokeColor=#000000;dashed=1;" parent="1" source="oled" target="bt" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ir_check" value="红外传感器&#xa;检测杯盖状态" style="rhombus;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;fontFamily=SimSun;strokeWidth=1.5;" parent="1" vertex="1">
+                    <mxGeometry x="340" y="520" width="150" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_oled_ir" style="strokeWidth=1.5;strokeColor=#000000;" parent="1" source="oled" target="ir_check" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_ir_open" value="杯盖未关闭" style="strokeWidth=1;strokeColor=#000000;fontSize=10;fontFamily=SimSun;" parent="1" source="ir_check" target="normal" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                        <Array as="points">
+                            <mxPoint x="200" y="560"/>
+                            <mxPoint x="200" y="242"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="auto_lock" value="舵机自动上锁" style="rounded=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;fontFamily=SimSun;strokeWidth=1.5;" parent="1" vertex="1">
+                    <mxGeometry x="340" y="650" width="150" height="45" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_ir_close" value="杯盖已关闭" style="strokeWidth=1.5;strokeColor=#000000;fontSize=10;fontFamily=SimSun;" parent="1" source="ir_check" target="auto_lock" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="locked" value="锁定状态" style="rounded=0;whiteSpace=wrap;fillColor=#E0E0E0;strokeColor=#000000;fontSize=13;fontStyle=1;fontFamily=SimSun;strokeWidth=1.5;" parent="1" vertex="1">
+                    <mxGeometry x="350" y="740" width="130" height="45" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_lock" style="strokeWidth=1.5;strokeColor=#000000;" parent="1" source="auto_lock" target="locked" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="user_action" value="用户是否&#xa;长按解锁键？" style="rhombus;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;fontFamily=SimSun;strokeWidth=1.5;" parent="1" vertex="1">
+                    <mxGeometry x="340" y="830" width="150" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_locked_action" style="strokeWidth=1.5;strokeColor=#000000;" parent="1" source="locked" target="user_action" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_no_action" value="否" style="strokeWidth=1;strokeColor=#000000;fontSize=10;fontFamily=SimSun;" parent="1" source="user_action" target="locked" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="560" y="870"/>
+                            <mxPoint x="560" y="762"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="pwd_input" value="进入密码输入模式&#xa;屏幕依次滚动显示数字&#xa;用户按键确认每一位" style="rounded=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;fontFamily=SimSun;strokeWidth=1.5;" parent="1" vertex="1">
+                    <mxGeometry x="315" y="960" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_yes_action" value="是" style="strokeWidth=1.5;strokeColor=#000000;fontSize=10;fontFamily=SimSun;" parent="1" source="user_action" target="pwd_input" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="pwd_check" value="3位密码&#xa;是否正确？" style="rhombus;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;fontFamily=SimSun;strokeWidth=1.5;" parent="1" vertex="1">
+                    <mxGeometry x="345" y="1070" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_pwd" style="strokeWidth=1.5;strokeColor=#000000;" parent="1" source="pwd_input" target="pwd_check" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="unlock" value="舵机解锁&#xa;杯盖可打开" style="rounded=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;fontFamily=SimSun;strokeWidth=1.5;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="1085" width="140" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_pwd_yes" value="正确" style="strokeWidth=1.5;strokeColor=#000000;fontSize=10;fontFamily=SimSun;" parent="1" source="pwd_check" target="unlock" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_unlock_back" value="返回正常工作模式" style="strokeWidth=1;strokeColor=#000000;dashed=1;fontSize=9;fontFamily=SimSun;" parent="1" source="unlock" target="normal" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="60" y="1110"/>
+                            <mxPoint x="60" y="242"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="fail_check" value="连续错误&#xa;是否达3次？" style="rhombus;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;fontFamily=SimSun;strokeWidth=1.5;" parent="1" vertex="1">
+                    <mxGeometry x="570" y="1070" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_pwd_no" value="错误" style="strokeWidth=1.5;strokeColor=#000000;fontSize=10;fontFamily=SimSun;" parent="1" source="pwd_check" target="fail_check" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_fail_no" value="未达3次" style="strokeWidth=1;strokeColor=#000000;fontSize=10;fontFamily=SimSun;" parent="1" source="fail_check" target="locked" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="750" y="1110"/>
+                            <mxPoint x="750" y="762"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="alarm" value="触发安全警报&#xa;蜂鸣器持续报警&#xa;屏幕显示警告" style="rounded=0;whiteSpace=wrap;fillColor=#E0E0E0;strokeColor=#000000;fontSize=12;fontStyle=1;fontFamily=SimSun;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="555" y="1200" width="170" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_fail_yes" value="已达3次" style="strokeWidth=1.5;strokeColor=#000000;fontSize=10;fontFamily=SimSun;" parent="1" source="fail_check" target="alarm" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="reset" value="长按复位键&#xa;解除警报" style="rounded=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;fontFamily=SimSun;strokeWidth=1.5;" parent="1" vertex="1">
+                    <mxGeometry x="345" y="1210" width="140" height="45" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_alarm_reset" style="strokeWidth=1.5;strokeColor=#000000;" parent="1" source="alarm" target="reset" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_reset_lock" value="回到锁定状态" style="strokeWidth=1;strokeColor=#000000;dashed=1;fontSize=9;fontFamily=SimSun;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="locked" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="115" y="1232"/>
+                            <mxPoint x="115" y="762"/>
+                            <mxPoint x="340" y="762"/>
+                        </Array>
+                        <mxPoint x="320" y="1232.3727272727274" as="sourcePoint"/>
+                        <mxPoint x="325" y="761.8499999999999" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
