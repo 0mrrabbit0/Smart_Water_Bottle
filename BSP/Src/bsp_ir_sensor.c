@@ -1,21 +1,15 @@
 /**
  * @file    bsp_ir_sensor.c
- * @brief   GP2Y0A21YK0F IR distance sensor driver (analog output, ADC)
+ * @brief   GP2Y0A21YK0F IR distance sensor (analog, PA1 / ADC1_CH1)
  *
- * GP2Y0A21YK0F outputs 0.4~3.1V for 80~10cm.
- * Closer object -> higher voltage -> higher ADC raw value.
- * Below ~10cm the output is non-monotonic but still well above
- * the "no object" baseline, so a raw threshold works for lid detection.
- *
- * Uses shared ADC1 handle from bsp.c (BSP_ADC1_ReadChannel).
+ * Output is 0.4~3.1V over 80~10cm; closer object yields higher ADC reading.
+ * Lid-closed detection uses a raw ADC threshold (IR_CLOSE_THRESHOLD).
  */
 
 #include "bsp.h"
 
 void BSP_IR_Init(void)
 {
-    /* ADC1 initialized in BSP_ADC1_Init() (bsp.c) */
-    /* GPIO configured as analog in BSP_GPIO_Init() (bsp_gpio.c) */
 }
 
 uint16_t BSP_IR_ReadRaw(void)

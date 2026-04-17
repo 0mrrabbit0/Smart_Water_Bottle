@@ -8,12 +8,13 @@
 #include "app_task.h"
 #include "bsp.h"
 
-/* Default unlock password: press KEY1 when digit 3, 7, 5 appears */
+/* Default unlock password: confirm KEY1 when digits 3, 7, 5 appear in turn */
 static const uint8_t s_password[UNLOCK_PASSWORD_LEN] = {3, 7, 5};
 static uint8_t s_fail_count = 0;
 
-/* Cooldown after unlock: prevent immediate re-lock (in Task_Lock cycles, ~100ms each) */
-#define UNLOCK_COOLDOWN_CYCLES  30   /* 30 * 100ms = 3 seconds */
+/* Cooldown after a successful unlock prevents immediate re-lock by the IR sensor.
+ * One cycle equals the Task_Lock period (~100 ms). */
+#define UNLOCK_COOLDOWN_CYCLES  30   /* 30 x 100 ms = 3 s */
 static uint8_t s_unlock_cooldown = 0;
 
 static void run_unlock_sequence(void)
@@ -38,7 +39,6 @@ static void run_unlock_sequence(void)
                             correct = 1;
                             BSP_Buzzer_Beep(50, 0, 1);
                         } else {
-                            /* Wrong digit */
                             s_fail_count++;
                             BSP_Buzzer_Beep(200, 100, 3);
                             goto unlock_failed;
@@ -51,14 +51,13 @@ static void run_unlock_sequence(void)
         }
 
         if (!correct) {
-            /* Timeout - no button pressed during 1-9 cycle */
+            /* Timed out: user did not press KEY1 during the 1-9 cycle */
             s_fail_count++;
             BSP_Buzzer_Beep(200, 100, 2);
             goto unlock_failed;
         }
     }
 
-    /* All steps correct - unlock! */
     BSP_Servo_Unlock();
     g_lock_state      = LOCK_STATE_UNLOCKED;
     g_system_state    = SYS_STATE_NORMAL;
@@ -73,7 +72,6 @@ unlock_failed:
         g_system_state = SYS_STATE_ALARM;
     } else {
         g_system_state = SYS_STATE_NORMAL;
-        /* Remain locked */
     }
 }
 
@@ -88,20 +86,17 @@ void App_Lock_Process(key_event_t key_event)
 {
     switch (g_system_state) {
     case SYS_STATE_NORMAL:
-        /* Cooldown after unlock: count down before allowing auto-lock */
         if (s_unlock_cooldown > 0) {
             s_unlock_cooldown--;
             break;
         }
 
-        /* Auto-lock: IR detects lid closed + currently unlocked */
         if (BSP_IR_IsBlocked() && g_lock_state == LOCK_STATE_UNLOCKED) {
             BSP_Servo_Lock();
             g_lock_state = LOCK_STATE_LOCKED;
             BSP_Buzzer_Beep(100, 0, 1);
         }
 
-        /* Long press KEY1 to enter unlock mode */
         if (key_event == KEY_EVENT_KEY1_LONG && g_lock_state == LOCK_STATE_LOCKED) {
             g_system_state = SYS_STATE_UNLOCK_MODE;
             run_unlock_sequence();
@@ -109,14 +104,12 @@ void App_Lock_Process(key_event_t key_event)
         break;
 
     case SYS_STATE_UNLOCK_MODE:
-        /* Handled inside run_unlock_sequence */
+        /* All transitions handled inside run_unlock_sequence */
         break;
 
     case SYS_STATE_ALARM:
-        /* Buzzer alarm - toggle every cycle (~100ms) */
         BSP_Buzzer_Toggle();
 
-        /* Long press KEY2 to reset alarm */
         if (key_event == KEY_EVENT_KEY2_LONG) {
             BSP_Buzzer_Off();
             s_fail_count   = 0;

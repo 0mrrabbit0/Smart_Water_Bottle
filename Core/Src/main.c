@@ -1,55 +1,38 @@
-/* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Smart Water Bottle - Main program entry
-  ******************************************************************************
-  */
-/* USER CODE END Header */
+ * @file    main.c
+ * @brief   Smart Water Bottle main entry
+ */
 
-/* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "bsp.h"
 #include "app_task.h"
 #include "FreeRTOS.h"
 #include "task.h"
 
-/* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 
-/**
-  * @brief  The application entry point.
-  * @retval int
-  */
 int main(void)
 {
     HAL_Init();
     SystemClock_Config();
 
-    /* Initialize all hardware via BSP */
     BSP_Init();
 
-    /* Create FreeRTOS tasks and start scheduler */
     App_Task_Create();
     vTaskStartScheduler();
 
-    /* Should never reach here */
     while (1) {
     }
 }
 
 /**
-  * @brief System Clock Configuration
-  *        HSE 8MHz -> PLL x9 -> SYSCLK 72MHz
-  *        LSE 32.768kHz enabled for RTC
-  * @retval None
-  */
+ * @brief System clock: HSI 8MHz / 2 x PLL16 = 64MHz SYSCLK
+ */
 void SystemClock_Config(void)
 {
     RCC_OscInitTypeDef RCC_OscInitStruct = {0};
     RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
-    /* Use HSI (internal 8MHz) + PLL -> 64MHz SYSCLK */
     RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
     RCC_OscInitStruct.HSIState = RCC_HSI_ON;
     RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
@@ -61,7 +44,6 @@ void SystemClock_Config(void)
         Error_Handler();
     }
 
-    /* Configure CPU, AHB and APB bus clocks */
     RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK
                                 | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
     RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
@@ -75,9 +57,6 @@ void SystemClock_Config(void)
     }
 }
 
-/**
-  * @brief  FreeRTOS stack overflow hook
-  */
 void vApplicationStackOverflowHook(TaskHandle_t xTask, char *pcTaskName)
 {
     (void)xTask;
@@ -86,10 +65,6 @@ void vApplicationStackOverflowHook(TaskHandle_t xTask, char *pcTaskName)
     }
 }
 
-/**
-  * @brief  This function is executed in case of error occurrence.
-  * @retval None
-  */
 void Error_Handler(void)
 {
     __disable_irq();
@@ -103,4 +78,4 @@ void assert_failed(uint8_t *file, uint32_t line)
     (void)file;
     (void)line;
 }
-#endif /* USE_FULL_ASSERT */
+#endif

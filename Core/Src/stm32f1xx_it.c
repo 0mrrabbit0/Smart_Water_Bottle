@@ -1,19 +1,12 @@
 /**
-  ******************************************************************************
-  * @file    stm32f1xx_it.c
-  * @brief   Interrupt Service Routines.
-  ******************************************************************************
-  */
+ * @file    stm32f1xx_it.c
+ * @brief   Interrupt service routines
+ */
 
-/* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f1xx_it.h"
 #include "FreeRTOS.h"
 #include "task.h"
-
-/******************************************************************************/
-/*           Cortex-M3 Processor Interruption and Exception Handlers          */
-/******************************************************************************/
 
 void NMI_Handler(void)
 {
@@ -21,20 +14,16 @@ void NMI_Handler(void)
     }
 }
 
-/* Diagnostic variables - inspect these with debugger when HardFault occurs */
+/* HardFault stack frame snapshot for debugger inspection */
 volatile uint32_t g_fault_r0;
 volatile uint32_t g_fault_r1;
 volatile uint32_t g_fault_r2;
 volatile uint32_t g_fault_r3;
 volatile uint32_t g_fault_r12;
-volatile uint32_t g_fault_lr;   /* Link Register - return address of caller */
-volatile uint32_t g_fault_pc;   /* Program Counter - exact instruction that faulted */
-volatile uint32_t g_fault_psr;  /* Program Status Register */
+volatile uint32_t g_fault_lr;
+volatile uint32_t g_fault_pc;
+volatile uint32_t g_fault_psr;
 
-/**
-  * @brief  Save stacked registers for debugging, then halt.
-  *         In debugger, check g_fault_pc to find the faulting instruction.
-  */
 void HardFault_Handler_C(uint32_t *stack_frame)
 {
     g_fault_r0  = stack_frame[0];
@@ -96,26 +85,15 @@ void DebugMon_Handler(void)
 {
 }
 
-/* NOTE: SVC_Handler and PendSV_Handler are provided by FreeRTOS port layer.
-   They are mapped via FreeRTOSConfig.h:
-     #define vPortSVCHandler    SVC_Handler
-     #define xPortPendSVHandler PendSV_Handler
-   Do NOT define them here. */
+/* SVC_Handler and PendSV_Handler are provided by the FreeRTOS port via
+ * FreeRTOSConfig.h mappings; do not redefine here. */
 
-/**
-  * @brief  System tick timer handler - serves both HAL and FreeRTOS
-  */
 void SysTick_Handler(void)
 {
     HAL_IncTick();
 
-    /* Forward tick to FreeRTOS if scheduler has started */
     extern void xPortSysTickHandler(void);
     if (xTaskGetSchedulerState() != taskSCHEDULER_NOT_STARTED) {
         xPortSysTickHandler();
     }
 }
-
-/******************************************************************************/
-/* STM32F1xx Peripheral Interrupt Handlers                                    */
-/******************************************************************************/

@@ -41,13 +41,13 @@
 /* ---- TDS Sensor (Digital USART3 on PB10/PB11) ---- */
 /* TDS USART pins defined below with TP4056 section */
 
-/* ---- M04 Non-contact Capacitive Water Level Sensors (active LOW, open-drain) ---- */
-/* 2-level detection: Low (PB0) and High (PB1). PA1 reassigned to IR sensor. */
+/* ---- M04 Non-contact Capacitive Water Level Sensors (active LOW, open-drain) ----
+ * Two sensors: low water mark (PB0) and high water mark (PB1). */
 #define WATER_LEVEL_LOW_PORT    GPIOB
-#define WATER_LEVEL_LOW_PIN     GPIO_PIN_0  /* Lower sensor */
+#define WATER_LEVEL_LOW_PIN     GPIO_PIN_0
 
 #define WATER_LEVEL_HIGH_PORT   GPIOB
-#define WATER_LEVEL_HIGH_PIN    GPIO_PIN_1  /* Higher sensor */
+#define WATER_LEVEL_HIGH_PIN    GPIO_PIN_1
 
 /* ---- Keys (active LOW) ---- */
 #define KEY1_PORT               GPIOA
@@ -74,14 +74,7 @@
 #define BUZZER_PORT             GPIOB
 #define BUZZER_PIN              GPIO_PIN_5
 
-/* ---- OLED SSD1306 Software I2C (4-wire connection) ---- */
-/* Hardware connection (7-pin OLED module, only use 4 wires):
- *   D0 (SCL)  -> PB6
- *   D1 (SDA)  -> PB7
- *   VCC       -> 3.3V
- *   GND       -> GND
- *   (RES/DC/CS pins are not connected in I2C mode)
- */
+/* ---- SSD1306 OLED via software I2C (D0=SCL=PB6, D1=SDA=PB7) ---- */
 #define OLED_SCL_PORT           GPIOB
 #define OLED_SCL_PIN            GPIO_PIN_6
 #define OLED_SDA_PORT           GPIOB
@@ -93,7 +86,7 @@
 #define OLED_SDA_CLR()          HAL_GPIO_WritePin(OLED_SDA_PORT, OLED_SDA_PIN, GPIO_PIN_RESET)
 #define OLED_SDA_READ()         HAL_GPIO_ReadPin(OLED_SDA_PORT, OLED_SDA_PIN)
 
-/* I2C address: 0x78 (7-bit 0x3C << 1), try 0x7A if 0x78 doesn't work */
+/* 7-bit slave address 0x3C, shifted into 8-bit form (0x78) */
 #define OLED_I2C_ADDR           0x78
 
 /* ---- Bluetooth HC-05 (USART2) ---- */

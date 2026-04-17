@@ -22,7 +22,7 @@ void BSP_Servo_Init(void)
     gpio.Speed = GPIO_SPEED_FREQ_LOW;
     HAL_GPIO_Init(SERVO_PORT, &gpio);
 
-    /* TIM3: 72MHz / 72 = 1MHz, period = 20000 -> 50Hz */
+    /* TIM3 PWM: PSC + ARR configured in bsp_gpio.h to produce 50Hz / 20ms period */
     s_htim3.Instance               = SERVO_TIM;
     s_htim3.Init.Prescaler         = SERVO_TIM_PSC;
     s_htim3.Init.CounterMode       = TIM_COUNTERMODE_UP;

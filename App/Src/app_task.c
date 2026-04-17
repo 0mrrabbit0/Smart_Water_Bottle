@@ -26,14 +26,11 @@ static TaskHandle_t s_h_bluetooth;
 
 void App_Task_Create(void)
 {
-    /* Create synchronization primitives */
     g_mutex_sensor = xSemaphoreCreateMutex();
     g_queue_key    = xQueueCreate(KEY_QUEUE_DEPTH, sizeof(key_event_t));
 
-    /* Initialize app modules */
     App_Lock_Init();
 
-    /* Create tasks */
     xTaskCreate(Task_Key,       "Key",       TASK_KEY_STACK_SIZE,
                 NULL, TASK_KEY_PRIORITY,       &s_h_key);
 
@@ -96,7 +93,7 @@ void Task_Display(void *pvParameters)
             App_Display_Alarm();
             break;
         case SYS_STATE_UNLOCK_MODE:
-            /* Lock task handles display during unlock */
+            /* Display is driven by Task_Lock during the unlock sequence */
             break;
         }
         vTaskDelayUntil(&last_wake, pdMS_TO_TICKS(TASK_DISPLAY_PERIOD_MS));
@@ -110,11 +107,10 @@ void Task_Lock(void *pvParameters)
     key_event_t evt;
 
     for (;;) {
-        /* Wait for key event or timeout (100ms for periodic IR check) */
+        /* Wake on a key event or every 100 ms to poll the IR sensor */
         if (xQueueReceive(g_queue_key, &evt, pdMS_TO_TICKS(100)) == pdTRUE) {
             App_Lock_Process(evt);
         } else {
-            /* Periodic: check IR sensor for auto-lock */
             App_Lock_Process(KEY_EVENT_NONE);
         }
     }

@@ -1,19 +1,14 @@
 /**
  * @file    bsp_battery.c
- * @brief   Battery voltage monitoring and capacity calculation driver
- *
- * This driver reads battery voltage via ADC and calculates remaining capacity.
- * Uses voltage divider (1:1, 100k each) to measure single-cell Li-ion battery.
- *
- * Uses shared ADC1 handle from bsp.c (BSP_ADC1_ReadChannel).
+ * @brief   Battery voltage monitor and capacity lookup
  */
 
 #include "bsp.h"
 
-#define VBAT_SAMPLES        10    /* Number of ADC samples to average */
-#define VREF_MV             3300  /* ADC reference voltage in mV (3.3V) */
-#define ADC_RESOLUTION      4095  /* 12-bit ADC max value */
-#define VOLTAGE_DIVIDER     2     /* Voltage divider ratio (R1=R2, so 1:1 means divide by 2) */
+#define VBAT_SAMPLES        10
+#define VREF_MV             3300
+#define ADC_RESOLUTION      4095
+#define VOLTAGE_DIVIDER     2     /* R1=R2 => measured voltage is half of VBAT */
 
 /* Battery voltage-to-capacity lookup table (mV vs %) */
 static const uint16_t BATTERY_LUT[][2] = {
@@ -30,8 +25,6 @@ static const uint16_t BATTERY_LUT[][2] = {
 
 void BSP_Battery_Init(void)
 {
-    /* ADC1 initialized in BSP_ADC1_Init() (bsp.c) */
-    /* GPIO configured as analog in BSP_GPIO_Init() (bsp_gpio.c) */
 }
 
 uint16_t BSP_Battery_ReadRaw(void)

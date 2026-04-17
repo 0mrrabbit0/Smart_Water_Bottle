@@ -48,12 +48,12 @@ void BSP_DebugUart_Init(void)
 
     HAL_UART_Init(&s_huart1);
 
-    /* Enable USART1 RXNE interrupt, priority 6 (> configLIBRARY_MAX_SYSCALL = 5) */
+    /* RXNE interrupt at NVIC priority 6 (lower than configLIBRARY_MAX_SYSCALL = 5) */
     HAL_NVIC_SetPriority(USART1_IRQn, 6, 0);
     HAL_NVIC_EnableIRQ(USART1_IRQn);
     __HAL_UART_ENABLE_IT(&s_huart1, UART_IT_RXNE);
 
-    /* Print usage hint (polling, before scheduler starts) */
+    /* Polled banner: scheduler has not started yet so the ISR is not used here */
     const char *msg =
         "\r\n[DBG] Serial Key Sim Ready (115200 8N1)\r\n"
         "  1=K1_SHORT  2=K1_LONG  3=K2_SHORT  4=K2_LONG\r\n";
@@ -90,7 +90,7 @@ void USART1_IRQHandler(void)
         case '3': evt = KEY_EVENT_KEY2_SHORT; ISR_SendStr("[K2_SHORT]\r\n"); break;
         case '4': evt = KEY_EVENT_KEY2_LONG;  ISR_SendStr("[K2_LONG]\r\n");  break;
         default: {
-            /* Echo any unknown byte as hex so user can verify wiring */
+            /* Echo any unrecognised byte back as hex for diagnostics */
             const char hex[] = "0123456789ABCDEF";
             char buf[] = "[RX:0x??]\r\n";
             buf[5] = hex[(ch >> 4) & 0x0F];
@@ -107,7 +107,7 @@ void USART1_IRQHandler(void)
         }
     }
 
-    /* Clear overrun error if any (read SR then DR on STM32F1) */
+    /* Clear ORE by reading SR then DR (STM32F1 reference manual sequence) */
     if (__HAL_UART_GET_FLAG(&s_huart1, UART_FLAG_ORE)) {
         (void)s_huart1.Instance->SR;
         (void)s_huart1.Instance->DR;

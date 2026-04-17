@@ -7,7 +7,7 @@
 
 static RTC_HandleTypeDef s_hrtc;
 
-/* Read RTC 32-bit counter (replaces HAL-internal static RTC_ReadTimeCounter) */
+/* Read RTC 32-bit counter directly (HAL keeps its equivalent helper static) */
 static uint32_t BSP_RTC_ReadCounter(void)
 {
     uint16_t high1, high2, low;
@@ -19,15 +19,15 @@ static uint32_t BSP_RTC_ReadCounter(void)
     return ((uint32_t)high1 << 16) | low;
 }
 
-/* Write RTC 32-bit counter (replaces HAL-internal static RTC_WriteTimeCounter) */
+/* Write RTC 32-bit counter directly (HAL keeps its equivalent helper static) */
 static void BSP_RTC_WriteCounter(uint32_t value)
 {
-    while (!(RTC->CRL & RTC_CRL_RTOFF)) {}   /* Wait for last write to finish */
-    RTC->CRL |= RTC_CRL_CNF;                 /* Enter configuration mode      */
+    while (!(RTC->CRL & RTC_CRL_RTOFF)) {}
+    RTC->CRL |= RTC_CRL_CNF;
     RTC->CNTH = (uint16_t)(value >> 16);
     RTC->CNTL = (uint16_t)(value & 0xFFFF);
-    RTC->CRL &= ~RTC_CRL_CNF;                /* Exit configuration mode       */
-    while (!(RTC->CRL & RTC_CRL_RTOFF)) {}   /* Wait for write to complete    */
+    RTC->CRL &= ~RTC_CRL_CNF;
+    while (!(RTC->CRL & RTC_CRL_RTOFF)) {}
 }
 
 void BSP_RTC_Init(void)
@@ -37,17 +37,14 @@ void BSP_RTC_Init(void)
 
     HAL_PWR_EnableBkUpAccess();
 
-    /* Always set Instance before any HAL RTC call */
     s_hrtc.Instance = RTC;
 
-    /* Check if RTC is already initialized */
+    /* Skip re-init if the backup register magic shows RTC was set previously */
     if (HAL_RTCEx_BKUPRead(&s_hrtc, RTC_BKP_DR1) == RTC_BKP_MAGIC) {
-        /* RTC already initialized, wait for sync */
         HAL_RTC_WaitForSynchro(&s_hrtc);
         return;
     }
 
-    /* First-time initialization */
     RCC_OscInitTypeDef osc = {0};
     osc.OscillatorType = RCC_OSCILLATORTYPE_LSE;
     osc.LSEState       = RCC_LSE_ON;
@@ -66,15 +63,12 @@ void BSP_RTC_Init(void)
     s_hrtc.Init.OutPut         = RTC_OUTPUTSOURCE_NONE;
     HAL_RTC_Init(&s_hrtc);
 
-    /* Set default time: 12:00:00 */
     rtc_time_t default_time = {12, 0, 0};
     BSP_RTC_SetTime(&default_time);
 
-    /* Set default date: 2026-01-01 Wed */
-    rtc_date_t default_date = {26, 1, 1, 3};
+    rtc_date_t default_date = {26, 1, 1, 3};   /* 2026-01-01 Wednesday */
     BSP_RTC_SetDate(&default_date);
 
-    /* Write magic value to mark RTC as initialized */
     HAL_RTCEx_BKUPWrite(&s_hrtc, RTC_BKP_DR1, RTC_BKP_MAGIC);
 }
 
@@ -94,7 +88,7 @@ void BSP_RTC_SetTime(const rtc_time_t *time)
                      + (uint32_t)time->minutes * 60
                      + (uint32_t)time->seconds;
 
-    /* Preserve day portion */
+    /* Keep the existing day count so only time-of-day is updated */
     uint32_t old_counter = BSP_RTC_ReadCounter();
     uint32_t day_part = old_counter - (old_counter % RTC_SECONDS_PER_DAY);
     counter += day_part;

@@ -1,6 +1,6 @@
 /**
  * @file    FreeRTOSConfig.h
- * @brief   FreeRTOS configuration for STM32F103C8T6 (Cortex-M3, 72MHz, 20KB RAM)
+ * @brief   FreeRTOS configuration for STM32F103C8T6 (Cortex-M3, 64MHz, 20KB RAM)
  */
 
 #ifndef FREERTOS_CONFIG_H

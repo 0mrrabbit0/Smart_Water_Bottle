@@ -14,9 +14,8 @@ void App_Sensor_Update(void)
     data.temperature      = BSP_DS18B20_ReadTemp();
     data.tds_value        = BSP_TDS_ReadValue();
     data.water_level      = BSP_WaterLevel_Read();
-    data.battery_capacity = BSP_Battery_GetCapacity();  /* Battery capacity 0-100% */
+    data.battery_capacity = BSP_Battery_GetCapacity();
 
-    /* Update global data with mutex */
     if (xSemaphoreTake(g_mutex_sensor, pdMS_TO_TICKS(50)) == pdTRUE) {
         g_sensor_data = data;
         xSemaphoreGive(g_mutex_sensor);

@@ -1,13 +1,12 @@
 /**
  * @file    bsp_oled.c
- * @brief   SSD1306 128x64 OLED driver (Software I2C)
+ * @brief   SSD1306 128x64 OLED driver over software I2C
  *
- * Hardware connection (4-wire I2C OLED):
+ * Wiring (4-wire I2C mode):
  *   D0 (SCL) -> PB6
  *   D1 (SDA) -> PB7
  *   VCC      -> 3.3V
  *   GND      -> GND
- *   (Other pins like RES/DC/CS are not used in I2C mode)
  */
 
 #include "stm32f1xx_hal.h"
@@ -31,7 +30,7 @@ static uint8_t s_gram_shadow[OLED_PAGES][OLED_WIDTH];
 
 static void I2C_Delay(void)
 {
-    /* ~5us delay for ~100kHz I2C (more stable than 2us) */
+    /* ~5us delay for ~100kHz I2C bit rate */
     for (volatile uint16_t i = 0; i < 20; i++);
 }
 
@@ -125,10 +124,10 @@ static void OLED_WriteData(uint8_t data)
 
 void BSP_OLED_Init(void)
 {
-    /* Wait for OLED power stabilization - critical! */
+    /* Wait for OLED power rail to stabilize before sending commands */
     BSP_DelayMs(200);
 
-    /* Initialization sequence for SSD1306 128x64 */
+    /* SSD1306 128x64 init sequence (see datasheet section 9.1) */
     OLED_WriteCmd(0xAE); /* Display OFF */
 
     OLED_WriteCmd(0xD5); /* Set display clock divide ratio/oscillator frequency */
@@ -143,7 +142,7 @@ void BSP_OLED_Init(void)
     OLED_WriteCmd(0x40); /* Set display start line to 0 */
 
     OLED_WriteCmd(0x8D); /* Charge pump setting */
-    OLED_WriteCmd(0x14); /* Enable charge pump (MUST for 3.3V operation) */
+    OLED_WriteCmd(0x14); /* Enable charge pump (required for 3.3V operation) */
 
     OLED_WriteCmd(0x20); /* Set memory addressing mode */
     OLED_WriteCmd(0x02); /* Page addressing mode */
@@ -170,7 +169,7 @@ void BSP_OLED_Init(void)
 
     BSP_DelayMs(100);
 
-    /* Initialize: shadow=0xFF so first Update() sends all pages */
+    /* Set shadow to a value that differs from gram so first Update() flushes all pages */
     memset(s_gram, 0x00, sizeof(s_gram));
     memset(s_gram_shadow, 0xFF, sizeof(s_gram_shadow));
     BSP_OLED_Update();
@@ -187,7 +186,7 @@ void BSP_OLED_Update(void)
         OLED_WriteCmd(0x00);        /* Set lower column address */
         OLED_WriteCmd(0x10);        /* Set higher column address */
 
-        /* Send entire page in one I2C transaction (128x faster than per-byte) */
+        /* Send the whole page within one I2C transaction */
         I2C_Start();
         I2C_WriteByte(OLED_I2C_ADDR);
         I2C_WaitAck();
