@@ -1,0 +1,174 @@
+.page {
+  padding: 16rpx 0 40rpx;
+}
+
+/* 综合评级 */
+.grade-card {
+  display: flex;
+  align-items: center;
+  gap: 32rpx;
+}
+
+.grade-badge {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  border: 6rpx solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.grade-label {
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.grade-letter {
+  font-size: 48rpx;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.grade-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.grade-tds {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #262626;
+}
+
+.grade-time {
+  font-size: 24rpx;
+  color: #8C8C8C;
+  margin-top: 8rpx;
+}
+
+/* 段落标题 */
+.section-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #262626;
+  margin-bottom: 24rpx;
+  display: block;
+}
+
+/* 周期切换 */
+.period-tabs {
+  display: flex;
+  gap: 4rpx;
+  background: #F5F5F5;
+  border-radius: 8rpx;
+  padding: 4rpx;
+}
+
+.period-tab {
+  font-size: 22rpx;
+  padding: 8rpx 20rpx;
+  border-radius: 6rpx;
+  color: #8C8C8C;
+}
+
+.period-tab.active {
+  background: #FFFFFF;
+  color: #1890FF;
+  font-weight: 500;
+  box-shadow: 0 1rpx 4rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 趋势图 */
+.trend-chart {
+  padding: 0 8rpx;
+}
+
+.chart-area {
+  display: flex;
+  height: 200rpx;
+}
+
+.chart-y-axis {
+  width: 60rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 18rpx;
+  color: #8C8C8C;
+  text-align: right;
+  padding-right: 8rpx;
+}
+
+.chart-bars {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  gap: 4rpx;
+  border-bottom: 2rpx solid #F0F0F0;
+  border-left: 2rpx solid #F0F0F0;
+  padding: 0 8rpx;
+}
+
+.chart-bar-item {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.chart-bar {
+  width: 80%;
+  max-width: 24rpx;
+  border-radius: 4rpx 4rpx 0 0;
+  transition: height 0.4s ease;
+  min-height: 4rpx;
+}
+
+.chart-x-labels {
+  display: flex;
+  margin-left: 60rpx;
+  padding: 8rpx 8rpx 0;
+  font-size: 16rpx;
+  color: #8C8C8C;
+}
+
+.chart-x-labels text {
+  flex: 1;
+  text-align: center;
+}
+
+.empty-chart {
+  text-align: center;
+  padding: 60rpx 0;
+  color: #8C8C8C;
+  font-size: 26rpx;
+}
+
+/* 水质知识 */
+.knowledge-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.knowledge-item {
+  padding: 20rpx;
+  background: #F5F7FA;
+  border-radius: 12rpx;
+}
+
+.knowledge-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #262626;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.knowledge-desc {
+  font-size: 24rpx;
+  color: #595959;
+  line-height: 1.6;
+}

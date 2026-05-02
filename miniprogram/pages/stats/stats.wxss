@@ -1,0 +1,257 @@
+.page {
+  padding: 0 0 40rpx;
+}
+
+/* Tab 切换 */
+.tab-bar {
+  display: flex;
+  background: #FFFFFF;
+  padding: 16rpx 24rpx;
+  gap: 12rpx;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx;
+  font-size: 28rpx;
+  color: #595959;
+  border-radius: 12rpx;
+  background: #F5F7FA;
+}
+
+.tab.active {
+  background: #1890FF;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+/* 汇总 */
+.summary {
+  display: flex;
+}
+
+.summary-item {
+  flex: 1;
+  text-align: center;
+}
+
+.summary-value {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1890FF;
+  display: block;
+}
+
+.summary-label {
+  font-size: 20rpx;
+  color: #8C8C8C;
+  margin-top: 4rpx;
+  display: block;
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #262626;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+/* 柱状图 */
+.bar-chart {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 300rpx;
+  padding-top: 40rpx;
+}
+
+.bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.bar-value {
+  font-size: 18rpx;
+  color: #8C8C8C;
+  margin-bottom: 4rpx;
+  min-height: 28rpx;
+}
+
+.bar-track {
+  flex: 1;
+  width: 40rpx;
+  background: #F0F0F0;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.bar-fill {
+  width: 100%;
+  background: #BFBFBF;
+  border-radius: 8rpx;
+  transition: height 0.4s ease;
+  min-height: 4rpx;
+}
+
+.bar-fill.achieved {
+  background: #1890FF;
+}
+
+.bar-label {
+  font-size: 22rpx;
+  color: #8C8C8C;
+  margin-top: 8rpx;
+}
+
+.goal-line-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+  margin-top: 16rpx;
+  font-size: 22rpx;
+  color: #8C8C8C;
+}
+
+.goal-line-dot {
+  width: 16rpx;
+  height: 4rpx;
+  background: #FF7A45;
+  border-radius: 2rpx;
+}
+
+/* 日历 */
+.month-nav {
+  display: flex;
+  gap: 24rpx;
+}
+
+.nav-btn {
+  font-size: 28rpx;
+  color: #1890FF;
+  padding: 4rpx 16rpx;
+}
+
+.calendar-header {
+  display: flex;
+  margin-bottom: 8rpx;
+}
+
+.cal-weekday {
+  flex: 1;
+  text-align: center;
+  font-size: 22rpx;
+  color: #8C8C8C;
+  padding: 8rpx 0;
+}
+
+.calendar-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cal-day {
+  width: calc(100% / 7);
+  padding: 6rpx;
+  box-sizing: border-box;
+}
+
+.cal-day.empty {
+  visibility: hidden;
+}
+
+.cal-day-inner {
+  aspect-ratio: 1;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F0F0F0;
+}
+
+.cal-day-num {
+  font-size: 22rpx;
+  color: #262626;
+}
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+  margin-top: 16rpx;
+}
+
+.legend-block {
+  width: 24rpx;
+  height: 24rpx;
+  border-radius: 4rpx;
+}
+
+.legend-label {
+  font-size: 20rpx;
+  color: #8C8C8C;
+}
+
+/* 详细记录 */
+.detail-item {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #F0F0F0;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-date {
+  width: 100rpx;
+  flex-shrink: 0;
+}
+
+.detail-day {
+  font-size: 24rpx;
+  color: #262626;
+  display: block;
+}
+
+.detail-weekday {
+  font-size: 20rpx;
+  color: #8C8C8C;
+}
+
+.detail-bar-bg {
+  flex: 1;
+  height: 16rpx;
+  background: #F0F0F0;
+  border-radius: 8rpx;
+  margin: 0 16rpx;
+  overflow: hidden;
+}
+
+.detail-bar-fill {
+  height: 100%;
+  background: #BFBFBF;
+  border-radius: 8rpx;
+  transition: width 0.4s ease;
+}
+
+.detail-bar-fill.achieved {
+  background: #1890FF;
+}
+
+.detail-amount {
+  font-size: 24rpx;
+  color: #262626;
+  width: 100rpx;
+  text-align: right;
+  flex-shrink: 0;
+}

@@ -1,0 +1,47 @@
+.quality-gauge {
+  margin-bottom: 28rpx;
+}
+
+.gauge-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12rpx;
+}
+
+.gauge-label {
+  font-size: 26rpx;
+  color: #595959;
+}
+
+.gauge-value {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #262626;
+}
+
+.gauge-unit {
+  font-size: 22rpx;
+  font-weight: 400;
+  color: #8C8C8C;
+}
+
+.gauge-bar-bg {
+  height: 16rpx;
+  background: #F0F0F0;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+.gauge-bar-fill {
+  height: 100%;
+  border-radius: 8rpx;
+  transition: width 0.6s ease;
+}
+
+.gauge-grade {
+  font-size: 22rpx;
+  font-weight: 500;
+  text-align: right;
+  margin-top: 6rpx;
+}

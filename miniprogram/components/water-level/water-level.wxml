@@ -1,0 +1,13 @@
+<view class="water-level-container">
+  <view class="water-bottle">
+    <view class="water-fill" style="height: {{fillHeight}}%;">
+      <view class="water-wave"></view>
+    </view>
+    <view class="level-marks">
+      <view class="mark mark-3" wx:if="{{level >= 3}}"></view>
+      <view class="mark mark-2" wx:if="{{level >= 2}}"></view>
+      <view class="mark mark-1" wx:if="{{level >= 1}}"></view>
+    </view>
+  </view>
+  <text class="level-text">{{levelText}}</text>
+</view>

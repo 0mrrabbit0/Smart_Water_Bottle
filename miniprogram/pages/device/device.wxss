@@ -1,0 +1,234 @@
+.page {
+  padding: 16rpx 0 40rpx;
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #262626;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+/* 已绑定设备卡 */
+.device-card {
+  padding: 28rpx;
+}
+
+.device-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.device-icon-wrap {
+  width: 80rpx;
+  height: 80rpx;
+  background: #E6F7FF;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+}
+
+.device-icon {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.device-info {
+  flex: 1;
+}
+
+.device-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #262626;
+  display: block;
+}
+
+.device-mac {
+  font-size: 22rpx;
+  color: #8C8C8C;
+  margin-top: 4rpx;
+  display: block;
+}
+
+.device-status {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  font-size: 24rpx;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+}
+
+.device-status.online {
+  background: #F6FFED;
+  color: #52C41A;
+}
+
+.device-status.offline {
+  background: #F5F5F5;
+  color: #8C8C8C;
+}
+
+.status-dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+}
+
+.online .status-dot { background: #52C41A; }
+.offline .status-dot { background: #8C8C8C; }
+
+.device-actions {
+  display: flex;
+  gap: 16rpx;
+}
+
+.device-action {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx;
+  background: #1890FF;
+  color: #FFFFFF;
+  border-radius: 12rpx;
+  font-size: 26rpx;
+}
+
+.device-action:active {
+  opacity: 0.8;
+}
+
+.device-action.disconnect {
+  background: #F5F5F5;
+  color: #595959;
+}
+
+/* 扫描 */
+.scan-btn {
+  font-size: 24rpx;
+  color: #1890FF;
+  padding: 8rpx 20rpx;
+  border: 2rpx solid #1890FF;
+  border-radius: 20rpx;
+}
+
+.scan-btn.scanning {
+  color: #8C8C8C;
+  border-color: #D9D9D9;
+}
+
+.scan-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx 0;
+  gap: 16rpx;
+  color: #8C8C8C;
+  font-size: 26rpx;
+}
+
+.loading-spinner {
+  width: 48rpx;
+  height: 48rpx;
+  border: 4rpx solid #F0F0F0;
+  border-top-color: #1890FF;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.scan-empty {
+  text-align: center;
+  padding: 40rpx 0;
+  color: #8C8C8C;
+  font-size: 26rpx;
+}
+
+/* 设备列表 */
+.device-list-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #F0F0F0;
+}
+
+.device-list-item:last-child {
+  border-bottom: none;
+}
+
+.list-item-info {
+  flex: 1;
+}
+
+.list-item-name {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #262626;
+  display: block;
+}
+
+.list-item-id {
+  font-size: 22rpx;
+  color: #8C8C8C;
+  margin-top: 4rpx;
+  display: block;
+}
+
+.list-item-rssi {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rpx;
+}
+
+.rssi-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 4rpx;
+  height: 32rpx;
+}
+
+.rssi-bar {
+  width: 8rpx;
+  background: #D9D9D9;
+  border-radius: 2rpx;
+}
+
+.rssi-bar:nth-child(1) { height: 8rpx; }
+.rssi-bar:nth-child(2) { height: 14rpx; }
+.rssi-bar:nth-child(3) { height: 22rpx; }
+.rssi-bar:nth-child(4) { height: 30rpx; }
+
+.rssi-bar.active {
+  background: #1890FF;
+}
+
+.rssi-text {
+  font-size: 18rpx;
+  color: #8C8C8C;
+}
+
+/* 设备设置 */
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+}
+
+.setting-label {
+  font-size: 28rpx;
+  color: #262626;
+}
+
+.setting-value {
+  font-size: 26rpx;
+  color: #1890FF;
+}

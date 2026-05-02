@@ -1,0 +1,130 @@
+.page {
+  padding: 16rpx 0 40rpx;
+}
+
+/* 总览 */
+.overview-card {
+  background: linear-gradient(135deg, #722ED1, #B37FEB);
+  color: #FFFFFF;
+  text-align: center;
+  padding: 40rpx;
+}
+
+.overview-title {
+  font-size: 26rpx;
+  opacity: 0.8;
+  display: block;
+}
+
+.overview-num {
+  margin: 16rpx 0 24rpx;
+}
+
+.num-current {
+  font-size: 64rpx;
+  font-weight: 700;
+}
+
+.num-total {
+  font-size: 32rpx;
+  opacity: 0.6;
+}
+
+.overview-bar-bg {
+  height: 12rpx;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6rpx;
+}
+
+.overview-bar-fill {
+  height: 100%;
+  background: #FFFFFF;
+  border-radius: 6rpx;
+  transition: width 0.6s ease;
+}
+
+/* 成就列表 */
+.section-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #262626;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.achievement-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #F0F0F0;
+}
+
+.achievement-item:last-child {
+  border-bottom: none;
+}
+
+.ach-icon-wrap {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background: #F6FFED;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.ach-icon-wrap.locked {
+  background: #F5F5F5;
+  opacity: 0.5;
+}
+
+.ach-icon {
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.ach-info {
+  flex: 1;
+}
+
+.ach-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #262626;
+  display: block;
+}
+
+.locked .ach-name {
+  color: #8C8C8C;
+}
+
+.ach-desc {
+  font-size: 24rpx;
+  color: #8C8C8C;
+  margin-top: 4rpx;
+  display: block;
+}
+
+.ach-time {
+  font-size: 22rpx;
+  color: #B7EB8F;
+  margin-top: 4rpx;
+  display: block;
+}
+
+.ach-badge {
+  font-size: 22rpx;
+  color: #52C41A;
+  background: #F6FFED;
+  padding: 6rpx 16rpx;
+  border-radius: 16rpx;
+  flex-shrink: 0;
+}
+
+.ach-progress {
+  font-size: 22rpx;
+  color: #8C8C8C;
+  flex-shrink: 0;
+}
